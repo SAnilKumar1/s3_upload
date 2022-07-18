@@ -1,0 +1,11 @@
+{% extends "layout.html" %}
+{% block content%}
+<div class="row">
+    <form method="post">
+        {% csrf_token %}
+        Reason: <input type="text" name="reason"><br>
+        
+        <input type="submit" value="DISAPPROVE" style="margin-left: 90px;">
+    </form>
+</div>
+ {% endblock %}

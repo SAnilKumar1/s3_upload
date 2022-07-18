@@ -1,0 +1,47 @@
+{% extends "layout.html" %}
+{% block  include %}
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.css">
+  
+  <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.js"></script>
+  {% endblock %}
+{% block content%}
+<div class="row">
+    <table id="videos" class="cell-border compact stripe nowrap">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Number</th>
+                <th>Email</th>
+                <th>status</th>
+                
+                {% if request.user.is_superuser %}
+                <th>Approve</th>
+                <th>DisApprove</th>
+                {% endif %}
+                <th>PLAY</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for video in object_list %}
+            <tr>
+                <td>{{ video.name }}</td>
+                <td>{{ video.number }}</td>
+                <td>{{ video.email }}</td>
+                <td>{{ video.status }}</td>
+                {% if request.user.is_superuser %}
+                <td><a type="button" class="btn btn-success" href="/approvevideo/{{ video.id}}/">APPROVE</a></td>
+                <td><a type="button" class="btn btn-danger" href="/disApproveVideo/{{ video.id}}/">DISAPPROVE</a></td>
+                {% endif %}
+                <td><a type="button" class="btn btn-info" href="{{ video.s3_bucket_url}}">PLAY</a></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+</div>
+<script>
+    $(document).ready( function () {
+    $('#videos').DataTable();
+} );
+</script>
+{% endblock %}

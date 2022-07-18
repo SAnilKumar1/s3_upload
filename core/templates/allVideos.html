@@ -1,0 +1,18 @@
+{% extends "layout.html" %}
+{% block content%}
+<div class="row">
+    <table border="2">
+        <tr>
+            <th>NAME</th>
+            <th>Status</th>
+        </tr>
+        {% for video in videos%}
+        <tr>
+            <td>{{ video.name }}</td>
+            <td>{{ video.status }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+</div>
+{% endblock %}

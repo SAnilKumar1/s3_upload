@@ -1,0 +1,14 @@
+{% extends "layout.html" %}
+{% block content%}
+<div class="row">
+    <form method="post">
+        {% csrf_token %}
+        Username: <input type="text" name="username"><br>
+        <br>
+        password: <input type="password" name="password"><br>
+        <br>
+        <input type="submit" value="Login" style="margin-left: 90px;">
+        <br>
+    </form>
+</div>
+ {% endblock %}
